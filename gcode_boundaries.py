@@ -1,3 +1,9 @@
+"""
+Copyright (c) 2023 Kieran Aponte
+This software is licensed under the MIT License.
+"""
+
+
 # This script finds the WCS boundaries along X and Y, which may be needed to know where to put workpiece clamps
 # to prevent collisions. The result factors in the radius of the tool & collet nut.
 
