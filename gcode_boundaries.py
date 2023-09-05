@@ -1,6 +1,8 @@
 """
+
 Copyright (c) 2023 Kieran Aponte
 This software is licensed under the MIT License.
+
 """
 
 
@@ -14,8 +16,6 @@ max_tool_diameter = 6.35
 max_collet_nut_diameter = 34
 
 
-
-max_tool_diameter = max(max_tool_diameter, max_collet_nut_diameter) #Assume collet nut will otherwise collide with clamp at some Z
 
 print('WARNING: This script does not fully account for G2/G3 movements. Use with caution.\n')
 print('If G Code includes a synchronization line (such as G28 G91 X0 Y0 as generated from Fusions 360), you may want to temporarily remove it for an accurate reading.\n')
@@ -84,16 +84,20 @@ with open(path, 'r') as infile:
                     
         
 tool_radius = max_tool_diameter / 2 
+collet_nut_radius = max_collet_nut_diameter / 2
 
 
-print('Tool Center X min:     {}'.format(x_min))
-print('Tool Center X max:     {}'.format(x_max))
-print('Tool Center Y min:     {}'.format(y_min))
-print('Tool Center Y max:     {}\n'.format(y_max))
+print('Tool Center X min: {}'.format(x_min))
+print('Tool Center X max: {}'.format(x_max))
+print('Tool Center Y min: {}'.format(y_min))
+print('Tool Center Y max: {}\n'.format(y_max))
 
+print('Tool X min:        {}'.format(x_min - tool_radius))
+print('Tool X max:        {}'.format(x_max + tool_radius))
+print('Tool Y min:        {}'.format(y_min - tool_radius))
+print('Tool Y max:        {}\n'.format(y_max + tool_radius))
 
-    
-print('Tool/Collet Nut X min: {}'.format(x_min - tool_radius))
-print('Tool/Collet Nut X max: {}'.format(x_max + tool_radius))
-print('Tool/Collet Nut Y min: {}'.format(y_min - tool_radius))
-print('Tool/Collet Nut Y max: {}'.format(y_max + tool_radius))
+print('Collet Nut X max:  {}'.format(x_max + collet_nut_radius))
+print('Collet Nut Y min:  {}'.format(y_min - collet_nut_radius))
+print('Collet Nut Y max:  {}'.format(y_max + collet_nut_radius))
+print('Collet Nut X min:  {}'.format(x_min - collet_nut_radius))
